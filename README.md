@@ -137,184 +137,164 @@ gibi durumlarda sistem otomatik olarak e-posta gönderir.
 
 ---
 
-## Dosya Yapısı
-+¦¦¦LeaveTracking.Application
--   -   LeaveTracking.Application.csproj
--   -   
--   +¦¦¦DTOs
--   -   +¦¦¦EmailDTOs
--   -   -       EmailLeaveRequestDto.cs
--   -   -       EmailUserDto.cs
--   -   -       
--   -   +¦¦¦LeaveRequestDTOs
--   -   -       CreateLeaveRequestDto.cs
--   -   -       LeaveRequestDto.cs
--   -   -       RejectLeaveRequestDto.cs
--   -   -       ResultLeaveRequestDto.cs
--   -   -       UpdateLeaveRequestDto.cs
--   -   -       
--   -   +¦¦¦UserDTOs
--   -   -       LoginDto.cs
--   -   -       RegisterDto.cs
--   -   -       ResultUserDto.cs
--   -   -       UserDto.cs
--   -   -       UserLeaveSummaryDto.cs
--   -   -       
--   -   L¦¦¦WebDTOs
--   -           EmployeeDash.cs
--   -           ManagerDash.cs
--   -           
--   +¦¦¦Helpers
--   -       LeaveCalculator.cs
--   -       LeaveTypeHelpers.cs
--   -       
--   +¦¦¦Interfaces
--   -   +¦¦¦Repositories
--   -   -       ILeaveRequestRepository.cs
--   -   -       IUserRepository.cs
--   -   -       
--   -   L¦¦¦Services
--   -           IAuthService.cs
--   -           ICurrentUserService.cs
--   -           IEmailService.cs
--   -           IEmailTemplateService.cs
--   -           ILeaveRequestService.cs
--   -           IUserServices.cs
--   -           
--   +¦¦¦Mapper
--   -       MappingProfile.cs
--   -       
--   +¦¦¦Services
--   -       AuthService.cs
--   -       LeaveRequestService.cs
--   -       UserServices.cs
--   -       
--   +¦¦¦Shared
--   -       ResponseResult.cs
--   -       
--   L¦¦¦Validators
--           LeaveRequestValidator.cs
--           UserRegisterValidator.cs
--           
-+¦¦¦LeaveTracking.Domain
--   -   LeaveTracking.Domain.csproj
--   -   
--   +¦¦¦Common
--   -       BaseEntity.cs
--   -       
--   +¦¦¦Entities
--   -       LeaveRequest .cs
--   -       User.cs
--   -       
--   +¦¦¦Enums
--   -       LeaveStatus.cs
--   -       LeaveType.cs
--   -       UserRole.cs
--   -       
-+¦¦¦LeaveTracking.Infrastructure
--   -   LeaveTracking.Infrastructure.csproj
--   -   
--   +¦¦¦Externals
--   -   L¦¦¦EmailTemplates
--   -           ApprovedLeaveRequestTemplate.html
--   -           CreateLeaveRequestTemplate.html
--   -           NewNotificationLeaveRequestTemplate.html
--   -           RejectedLeaveRequestTemplate.html
--   -           UserLeaveQuotaTemplate.html
--   -           
--   +¦¦¦Migrations
--   -       20250807183828_mig1.cs
--   -       20250807183828_mig1.Designer.cs
--   -       AppDbContextModelSnapshot.cs
--   -       
--   +¦¦¦Persistence
--   -   +¦¦¦Configurations
--   -   -       LeaveRequestConfiguration.cs
--   -   -       UserConfiguration.cs
--   -   -       
--   -   L¦¦¦Context
--   -           AppDbContext.cs
--   -           AppDbContextFactory.cs
--   -           
--   +¦¦¦Repositories
--   -       LeaveRequestRepository.cs
--   -       UserRepository.cs
--   -       
--   +¦¦¦Seed
--   -       SeedData.cs
--   -       
--   L¦¦¦Services
--           CurrentUserService.cs
--           EmailService.cs
--           EmailTemplateService .cs
--           
-+¦¦¦LeaveTracking.MinimalAPI
--   -   appsettings.Development.json
--   -   appsettings.json
--   -   AuthModule.cs
--   -   LeaveTracking.MinimalAPI.csproj
--   -   LeaveTracking.MinimalAPI.csproj.user
--   -   ManagerModule.cs
--   -   Program.cs
--   -   UserModule.cs
--   -   
--   L¦¦¦Properties
--           launchSettings.json
--           
--  L¦¦¦LeaveTracking.Web
--   -   appsettings.Development.json
--    -   appsettings.json
--    -   LeaveTracking.Web.csproj
--    -   LeaveTracking.Web.csproj.user
--    -   Program.cs
--    -   
--    +¦¦¦Controllers
--    -       AccountController.cs
--    -       BaseController.cs
--    -       EmployeeController.cs
--    -       HomeController.cs
--    -       ManagerController.cs
--    -       
--    +¦¦¦Models
--    -       ErrorViewModel.cs
--    -       
--    +¦¦¦Properties
--   -       launchSettings.json
--   -       
--    +¦¦¦Views
--    -   -   _ViewImports.cshtml
--    -   -   _ViewStart.cshtml
--    -   -   
--    -   +¦¦¦Account
--    -   -       Login.cshtml
--    -   -       
--    -   +¦¦¦Employee
--    -   -       CreateLeave.cshtml
--    -   -       Index.cshtml
--    -   -       LeaveRequest.cshtml
--    -   -       
--    -   +¦¦¦Home
--    -   -       Index.cshtml
--    -   -       Privacy.cshtml
--    -   -       
--    -   +¦¦¦Manager
--    -   -       CalendarLeaveRequest.cshtml
--    -   -       Index.cshtml
--    -   -       LeaveRequest.cshtml
--    -   -       Register.cshtml
--    -   -       
--    -   L¦¦¦Shared
--    -           Error.cshtml
--    -           _Layout.cshtml
--    -           _Layout.cshtml.css
--    -           _ValidationScriptsPartial.cshtml
--    -           
--    L¦¦¦wwwroot
--        -   favicon.ico
--        -   
--        +¦¦¦css
--        -       site.css
--        -       
--        +¦¦¦js
--        -       site.js
+## 🏗️ Dosya Yapısı
 
+### 📦 LeaveTracking.Application
+
+```
+LeaveTracking.Application/
+├── DTOs/
+│   ├── EmailDTOs/
+│   │   ├── EmailLeaveRequestDto.cs
+│   │   └── EmailUserDto.cs
+│   ├── LeaveRequestDTOs/
+│   │   ├── CreateLeaveRequestDto.cs
+│   │   ├── LeaveRequestDto.cs
+│   │   ├── RejectLeaveRequestDto.cs
+│   │   ├── ResultLeaveRequestDto.cs
+│   │   └── UpdateLeaveRequestDto.cs
+│   ├── UserDTOs/
+│   │   ├── LoginDto.cs
+│   │   ├── RegisterDto.cs
+│   │   ├── ResultUserDto.cs
+│   │   ├── UserDto.cs
+│   │   └── UserLeaveSummaryDto.cs
+│   └── WebDTOs/
+│       ├── EmployeeDash.cs
+│       └── ManagerDash.cs
+├── Helpers/
+│   ├── LeaveCalculator.cs
+│   └── LeaveTypeHelpers.cs
+├── Interfaces/
+│   ├── Repositories/
+│   │   ├── ILeaveRequestRepository.cs
+│   │   └── IUserRepository.cs
+│   └── Services/
+│       ├── IAuthService.cs
+│       ├── ICurrentUserService.cs
+│       ├── IEmailService.cs
+│       ├── IEmailTemplateService.cs
+│       ├── ILeaveRequestService.cs
+│       └── IUserServices.cs
+├── Mapper/
+│   └── MappingProfile.cs
+├── Services/
+│   ├── AuthService.cs
+│   ├── LeaveRequestService.cs
+│   └── UserServices.cs
+├── Shared/
+│   └── ResponseResult.cs
+└── Validators/
+    ├── LeaveRequestValidator.cs
+    └── UserRegisterValidator.cs
+```
+
+### 🏢 LeaveTracking.Domain
+
+```
+LeaveTracking.Domain/
+├── Common/
+│   └── BaseEntity.cs
+├── Entities/
+│   ├── LeaveRequest.cs
+│   └── User.cs
+└── Enums/
+    ├── LeaveStatus.cs
+    ├── LeaveType.cs
+    └── UserRole.cs
+```
+
+### 🔧 LeaveTracking.Infrastructure
+
+```
+LeaveTracking.Infrastructure/
+├── Externals/
+│   └── EmailTemplates/
+│       ├── ApprovedLeaveRequestTemplate.html
+│       ├── CreateLeaveRequestTemplate.html
+│       ├── NewNotificationLeaveRequestTemplate.html
+│       ├── RejectedLeaveRequestTemplate.html
+│       └── UserLeaveQuotaTemplate.html
+├── Migrations/
+│   ├── 20250807183828_mig1.cs
+│   ├── 20250807183828_mig1.Designer.cs
+│   └── AppDbContextModelSnapshot.cs
+├── Persistence/
+│   ├── Configurations/
+│   │   ├── LeaveRequestConfiguration.cs
+│   │   └── UserConfiguration.cs
+│   └── Context/
+│       ├── AppDbContext.cs
+│       └── AppDbContextFactory.cs
+├── Repositories/
+│   ├── LeaveRequestRepository.cs
+│   └── UserRepository.cs
+├── Seed/
+│   └── SeedData.cs
+└── Services/
+    ├── CurrentUserService.cs
+    ├── EmailService.cs
+    └── EmailTemplateService.cs
+```
+
+### 🚀 LeaveTracking.MinimalAPI
+
+```
+LeaveTracking.MinimalAPI/
+├── Properties/
+│   └── launchSettings.json
+├── AuthModule.cs
+├── LeaveTracking.MinimalAPI.csproj
+├── ManagerModule.cs
+├── Program.cs
+├── UserModule.cs
+├── appsettings.Development.json
+└── appsettings.json
+```
+
+### 🌐 LeaveTracking.Web
+
+```
+LeaveTracking.Web/
+├── Controllers/
+│   ├── AccountController.cs
+│   ├── BaseController.cs
+│   ├── EmployeeController.cs
+│   ├── HomeController.cs
+│   └── ManagerController.cs
+├── Models/
+│   └── ErrorViewModel.cs
+├── Properties/
+│   └── launchSettings.json
+├── Views/
+│   ├── Account/
+│   │   └── Login.cshtml
+│   ├── Employee/
+│   │   ├── CreateLeave.cshtml
+│   │   ├── Index.cshtml
+│   │   └── LeaveRequest.cshtml
+│   ├── Home/
+│   │   ├── Index.cshtml
+│   │   └── Privacy.cshtml
+│   ├── Manager/
+│   │   ├── CalendarLeaveRequest.cshtml
+│   │   ├── Index.cshtml
+│   │   ├── LeaveRequest.cshtml
+│   │   └── Register.cshtml
+│   ├── Shared/
+│   │   ├── Error.cshtml
+│   │   ├── _Layout.cshtml
+│   │   ├── _Layout.cshtml.css
+│   │   └── _ValidationScriptsPartial.cshtml
+│   ├── _ViewImports.cshtml
+│   └── _ViewStart.cshtml
+├── wwwroot/
+│   ├── css/
+│   │   └── site.css
+│   ├── js/
+│   │   └── site.js
+│   └── favicon.ico
+├── Program.cs
+├── appsettings.Development.json
+└── appsettings.json
+```
