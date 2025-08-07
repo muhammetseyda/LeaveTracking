@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yeni İzin Talebi</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style type="text/css">
+        /* Reset styles for email clients */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* Client-specific styles */
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span,
+            .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        /* Main styles */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            min-width: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #f093fb;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: inline-block;
+            line-height: 60px;
+            font-size: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Content styles */
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .priority-badge {
+            background-color: #f093fb;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        /* Employee card */
+        .employee-card {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .employee-header {
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .employee-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: #f093fb;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: inline-block;
+            line-height: 50px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .employee-name {
+            color: #2d3748;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .employee-position {
+            color: #718096;
+            margin: 5px 0 0 0;
+            font-size: 14px;
+        }
+
+        /* Details table */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .details-table td {
+                padding: 12px 0;
+                border-bottom: 1px solid #e2e8f0;
+                vertical-align: top;
+            }
+
+            .details-table tr:last-child td {
+                border-bottom: none;
+            }
+
+        .details-label {
+            font-weight: bold;
+            color: #2d3748;
+            width: 40%;
+        }
+
+        .details-value {
+            color: #4a5568;
+            width: 60%;
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+        }
+
+        .btn-approve {
+            background-color: #56ab2f;
+        }
+
+        .btn-reject {
+            background-color: #ff6b6b;
+        }
+
+        .btn-view {
+            background-color: #4facfe;
+        }
+
+        /* Urgency section */
+        .urgency-section {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .urgency-title {
+            color: #b7791f;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .urgency-text {
+            color: #856404;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Team impact */
+        .team-impact {
+            background-color: #e8f4fd;
+            border: 1px solid #bee3f8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .impact-title {
+            color: #2b6cb0;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .impact-text {
+            color: #2c5282;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-text {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .company-info {
+            color: #a0aec0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* Mobile responsive */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+
+            .header, .content, .footer {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+
+                .header h1 {
+                    font-size: 24px !important;
+                }
+
+            .details-table td {
+                padding: 8px 0 !important;
+            }
+
+            .details-label,
+            .details-value {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            .details-value {
+                padding-top: 5px !important;
+                font-weight: bold !important;
+            }
+
+            .btn {
+                display: block !important;
+                width: 80% !important;
+                margin: 10px auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: #f4f4f4; padding: 20px 0;">
+        <table class="email-container" cellpadding="0" cellspacing="0" border="0">
+            <!-- Header -->
+            <tr>
+                <td class="header">
+                    <div class="header-icon">📋</div>
+                    <h1>Yeni İzin Talebi</h1>
+                </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+                <td class="content">
+                    <div class="greeting">
+                        Merhaba <strong>{ManagerName}</strong>,
+                    </div>
+
+                    <div class="message">
+                        Ekibinizden bir personel yeni bir izin talebinde bulunmuştur.
+                        Talebinizin değerlendirilmesi ve onayınız beklenmektedir.
+                    </div>
+
+                    <div class="priority-badge">
+                        ⚡ Onay Bekliyor
+                    </div>
+
+                    <!-- Employee Card -->
+                    <div class="employee-card">
+                        <div class="employee-header">
+                            <div class="employee-avatar">
+                                <svg viewBox="0 0 24 24" width="40" height="40" fill="#ccc" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6v1H4v-1z" />
+                                </svg>
+                            </div>
+                            <h3 class="employee-name">{EmployeeName}</h3>
+                        </div>
+
+                        <!-- Details Table -->
+                        <table class="details-table" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td class="details-label">🆔 Başvuru No:</td>
+                                <td class="details-value">{RequestId}</td>
+                            </tr>
+                            <tr>
+                                <td class="details-label">📅 İzin Tipi:</td>
+                                <td class="details-value">{LeaveType}</td>
+                            </tr>
+                            <tr>
+                                <td class="details-label">🚀 Başlangıç Tarihi:</td>
+                                <td class="details-value">{StartDate}</td>
+                            </tr>
+                            <tr>
+                                <td class="details-label">🏁 Bitiş Tarihi:</td>
+                                <td class="details-value">{EndDate}</td>
+                            </tr>
+                            <tr>
+                                <td class="details-label">⏱️ Toplam Süre:</td>
+                                <td class="details-value">{TotalDays} gün</td>
+                            </tr>
+                            <tr>
+                                <td class="details-label">📝 Başvuru Tarihi:</td>
+                                <td class="details-value">{RequestDate}</td>
+                            </tr>
+                            <tr>
+                                <td class="details-label">📊 Kalan İzin Hakkı:</td>
+                                <td class="details-value">{EmployeeRemainingDays} gün</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <a href="{ViewDetailsUrl}" class="btn btn-view">👁️ Detayları Görüntüle</a>
+                    </div>
+
+                    <!-- Urgency Section -->
+                    <div class="urgency-section">
+                        <div class="urgency-title">⏰ Süre Bilgisi</div>
+                        <div class="urgency-text">
+                            Bu talep <strong>2 iş günü</strong> içerisinde değerlendirilmelidir.
+                            Geç değerlendirme personelin planlarını etkileyebilir.
+                        </div>
+                    </div>
+
+                    <!-- Team Impact -->
+                    <div class="team-impact">
+                        <div class="impact-title">👥 Ekip Etkisi</div>
+                        <div class="impact-text">
+                            İzin onaylamadan önce, belirtilen tarihlerde ekip yoğunluğunu ve
+                            kritik projelerin durumunu kontrol etmeyi unutmayın.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+                <td class="footer">
+                    <div class="footer-text">LeaveTracking Yönetim Sistemi</div>
+                    <div class="company-info">
+                        Bu mesaj LeaveTracking sistemi tarafından otomatik olarak gönderilmiştir.<br>
+                        Lütfen bu e-postayı yanıtlamayınız.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+﻿@using LeaveTracking.Application.DTOs.LeaveRequestDTOs
+@using LeaveTracking.Domain.Enums
+@model IEnumerable<LeaveRequestDto>
+@{
+    ViewBag.Title = "İzinlerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>İzin Taleplerim</h2>
+        <p class="text-muted">İzin taleplerinizi görüntüleyin ve durumlarını takip edin</p>
+        <hr />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="card bg-light">
+            <div class="card-body p-3">
+                <h6 class="card-title mb-1">Hızlı Özet</h6>
+                <div class="row text-center">
+                    <div class="col-3">
+                        <small class="text-muted">Toplam</small><br>
+                        <strong class="text-primary">@(Model?.Count() ?? 0)</strong>
+                    </div>
+                    <div class="col-3">
+                        <small class="text-muted">Bekleyen</small><br>
+                        <strong class="text-warning">@(Model?.Count(x => x.Status == LeaveStatus.Pending) ?? 0)</strong>
+                    </div>
+                    <div class="col-3">
+                        <small class="text-muted">Onaylı</small><br>
+                        <strong class="text-success">@(Model?.Count(x => x.Status == LeaveStatus.Approved) ?? 0)</strong>
+                    </div>
+                    <div class="col-3">
+                        <small class="text-muted">Red</small><br>
+                        <strong class="text-danger">@(Model?.Count(x => x.Status == LeaveStatus.Rejected) ?? 0)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-right">
+        <a href="@Url.Action("CreateLeave", "Employee")" class="btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Yeni İzin Talebi
+        </a>
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Başarılı!</strong> @ViewBag.Success
+            </div>
+        }
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Hata!</strong> @ViewBag.Error
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>İzin Türü</th>
+                            <th>Başlangıç</th>
+                            <th>Bitiş</th>
+                            <th>Süre</th>
+                            <th>Durum</th>
+                            <th>Talep Tarihi</th>
+                            <th>Açıklama</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in Model.OrderByDescending(x => x.CreatedAt))
+                        {
+                            <tr class="@(request.Status == LeaveStatus.Pending ? "table-warning" : 
+                                       request.Status == LeaveStatus.Approved ? "table-success" : 
+                                       request.Status == LeaveStatus.Rejected ? "table-danger" : "")">
+                                <td>
+                                    @switch (request.LeaveType)
+                                    {
+                                        case LeaveType.Annual:
+                                            <span class="badge bg-primary">Yıllık İzin</span>
+                                            break;
+                                        case LeaveType.Sick:
+                                            <span class="badge bg-warning">Hastalık İzni</span>
+                                            break;
+                                        case LeaveType.Maternity:
+                                            <span class="badge bg-info">Doğum İzni</span>
+                                            break;
+                                        case LeaveType.Bereavement:
+                                            <span class="badge bg-error">Ölüm İzin</span>
+                                            break;
+                                        case LeaveType.Marriage:
+                                            <span class="badge bg-secondary">Evlilik İzin</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <strong>@request.StartDate.ToString("dd.MM.yyyy")</strong><br>
+                                    <small class="text-muted">@request.StartDate.ToString("dddd", new System.Globalization.CultureInfo("tr-TR"))</small>
+                                </td>
+                                <td>
+                                    <strong>@request.EndDate.ToString("dd.MM.yyyy")</strong><br>
+                                    <small class="text-muted">@request.EndDate.ToString("dddd", new System.Globalization.CultureInfo("tr-TR"))</small>
+                                </td>
+                                <td>
+                                    <strong class="text-primary">@((request.EndDate - request.StartDate).Days + 1)</strong>
+                                    <small class="text-muted">gün</small>
+                                </td>
+                                <td>
+                                    @switch (request.Status)
+                                    {
+                                        case LeaveStatus.Pending:
+                                            <span class="badge bg-pill bg-warning">
+                                                 Bekleyen
+                                            </span> 
+                                            break;
+                                        case LeaveStatus.Approved:
+                                            <span class="badge bg-pill bg-success">
+                                                 Onaylandı
+                                            </span>
+                                            break;
+                                        case LeaveStatus.Rejected:
+                                            <span class="badge bg-pill bg-danger">
+                                                 Reddedildi
+                                            </span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <strong>@request.CreatedAt.ToString("dd.MM.yyyy")</strong><br>
+                                    <small class="text-muted">@request.CreatedAt.ToString("HH:mm")</small>
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(request.Description))
+                                    {
+                                        if (request.Description.Length > 50)
+                                        {
+                                            <span title="@request.Description">
+                                                @request.Description.Substring(0, 50)...
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>@request.Description</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <small class="text-muted">-</small>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group-vertical btn-group-sm" role="group">
+                                        <button type="button" class="btn btn-info btn-sm" 
+                                                onclick="showLeaveDetails(@request.Id, '@request.LeaveType.ToString()', 
+                                                       '@request.StartDate.ToString("dd.MM.yyyy")', '@request.EndDate.ToString("dd.MM.yyyy")', 
+                                                       '@request.Status.ToString()', '@(request.Description ?? "")', 
+                                                       '@(request.RejectedReason ?? "")', '@request.CreatedAt.ToString("dd.MM.yyyy HH:mm")')">
+                                            Detay
+                                        </button>
+                                        
+                                        @if (request.Status == LeaveStatus.Pending)
+                                        {
+                                            @* <button type="button" class="btn btn-warning btn-sm" 
+                                                    onclick="editLeave(@request.Id)">
+                                                Düzenle
+                                            </button> *@
+                                            <form asp-action="DeleteLeaveRequest" asp-controller="Employee" method="post" style="display: inline;" onsubmit="handleSubmit(this)">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="id" value="@request.Id" />
+                                                <button type="submit" class="btn btn-danger btn-sm" 
+                                                        onclick="return confirm('Bu izin talebini iptal etmek istediğinizden emin misiniz?')">
+                                                    İptal
+                                                </button>
+                                            </form>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-body text-center py-5">
+                    <i class="fa fa-calendar-times fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">Henüz izin talebiniz bulunmamaktadır</h5>
+                    <p class="text-muted">İlk izin talebinizi oluşturmak için aşağıdaki butona tıklayın.</p>
+                    <a href="/employee/createLeave" class="btn btn-success">
+                        <i class="fa fa-plus"></i> İlk İzin Talebini Oluştur
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="leaveDetailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">İzin Detayları</h5>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>İzin Türü:</strong>
+                        <p id="modalLeaveType"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Durum:</strong>
+                        <p id="modalStatus"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Başlangıç Tarihi:</strong>
+                        <p id="modalStartDate"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Bitiş Tarihi:</strong>
+                        <p id="modalEndDate"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Açıklama:</strong>
+                        <p id="modalDescription"></p>
+                    </div>
+                </div>
+                <div class="row" id="rejectionReasonRow" style="display: none;">
+                    <div class="col-md-12">
+                        <strong>Red Sebebi:</strong>
+                        <div class="alert alert-danger" id="modalRejectionReason"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Talep Tarihi:</strong>
+                        <p id="modalCreatedAt"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showLeaveDetails(id, type, startDate, endDate, status, description, rejectedReason, createdAt) {
+        document.getElementById('modalLeaveType').textContent = getLeaveTypeText(type);
+        document.getElementById('modalStartDate').textContent = startDate;
+        document.getElementById('modalEndDate').textContent = endDate;
+        document.getElementById('modalStatus').innerHTML = getStatusBadge(status);
+        document.getElementById('modalDescription').textContent = description || 'Açıklama girilmemiş';
+        document.getElementById('modalCreatedAt').textContent = createdAt;
+        
+        if (status === 'Rejected' && rejectedReason) {
+            document.getElementById('modalRejectionReason').textContent = rejectedReason;
+            document.getElementById('rejectionReasonRow').style.display = 'block';
+        } else {
+            document.getElementById('rejectionReasonRow').style.display = 'none';
+        }
+        
+        $('#leaveDetailModal').modal('show');
+    }
+
+    function getLeaveTypeText(type) {
+       switch(type) {
+            case 'Annual': return 'Yıllık İzin';
+            case 'Sick': return 'Hastalık İzni';
+            case 'Maternity': return 'Doğum İzni';
+            case 'Bereavement': return 'Taziye İzni';
+            case 'Marriage': return 'Evlilik İzni';
+            default: return type;
+        }
+    }
+
+    function getStatusBadge(status) {
+        switch(status) {
+            case 'Pending': return '<span class="badge bg-warning">Bekleyen</span>';
+            case 'Approved': return '<span class="badge bg-success">Onaylandı</span>';
+            case 'Rejected': return '<span class="badge bg-danger">Reddedildi</span>';
+            default: return status;
+        }
+    }
+    
+</script>
+<script>
+    function handleSubmit(form) {
+        const btn = form.querySelector("button[type='submit']");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Gönderiliyor...';
+    }
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

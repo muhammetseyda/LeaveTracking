@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İzin Talebi Değerlendirmesi</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style type="text/css">
+        /* Reset styles for email clients */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* Client-specific styles */
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span,
+            .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        /* Main styles */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            min-width: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #ff6b6b;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: inline-block;
+            line-height: 60px;
+            font-size: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Content styles */
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .status-badge {
+            background-color: #ff6b6b;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        /* Details table */
+        .details-table {
+            width: 100%;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+            .details-table td {
+                padding: 15px;
+                border-bottom: 1px solid #e2e8f0;
+                vertical-align: top;
+            }
+
+            .details-table tr:last-child td {
+                border-bottom: none;
+            }
+
+        .details-label {
+            font-weight: bold;
+            color: #2d3748;
+            width: 40%;
+        }
+
+        .details-value {
+            color: #4a5568;
+            width: 60%;
+        }
+
+        /* Reason section */
+        .reason-section {
+            background-color: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .reason-title {
+            color: #c53030;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .reason-text {
+            color: #744210;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Action section */
+        .action-section {
+            background-color: #f7fafc;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .action-text {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+            .cta-button:hover {
+                background-color: #3182ce;
+            }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-text {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .company-info {
+            color: #a0aec0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* Mobile responsive */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+
+            .header, .content, .footer {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+
+                .header h1 {
+                    font-size: 24px !important;
+                }
+
+            .details-table td {
+                padding: 10px !important;
+            }
+
+            .details-label,
+            .details-value {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            .details-value {
+                padding-top: 5px !important;
+                font-weight: bold !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: #f4f4f4; padding: 20px 0;">
+        <table class="email-container" cellpadding="0" cellspacing="0" border="0">
+            <!-- Header -->
+            <tr>
+                <td class="header">
+                    <div class="header-icon">❌</div>
+                    <h1>İzin Talebi Değerlendirmesi</h1>
+                </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+                <td class="content">
+                    <div class="greeting">
+                        Merhaba <strong>{FullName}</strong>,
+                    </div>
+
+                    <div class="message">
+                        {StartDate} - {EndDate} tarihleri arasında talep etmiş olduğunuz izin başvurunuz
+                        değerlendirmeye alınmıştır.
+                    </div>
+
+                    <div class="status-badge">
+                        ❌ Başvuru Reddedildi
+                    </div>
+
+                    <!-- Details Table -->
+                    <table class="details-table" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="details-label">📅 İzin Tipi:</td>
+                            <td class="details-value">{LeaveType}</td>
+                        </tr>
+                        <tr>
+                            <td class="details-label">🚀 Başlangıç Tarihi:</td>
+                            <td class="details-value">{StartDate}</td>
+                        </tr>
+                        <tr>
+                            <td class="details-label">🏁 Bitiş Tarihi:</td>
+                            <td class="details-value">{EndDate}</td>
+                        </tr>
+                        <tr>
+                            <td class="details-label">⏱️ Toplam Süre:</td>
+                            <td class="details-value">{TotalDays} gün</td>
+                        </tr>
+                    </table>
+
+                    <!-- Reason Section -->
+                    <div class="reason-section">
+                        <div class="reason-title">🔍 Red Gerekçesi</div>
+                        <div class="reason-text">{RejectionReason}</div>
+                    </div>
+
+                    <!-- Action Section -->
+                    <div class="action-section">
+                        <div class="action-text">
+                            Detaylar için sisteme giriş yapabilir veya yöneticinizle iletişime geçebilirsiniz.
+                        </div>
+                        <a href="#" class="cta-button">Sisteme Git</a>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+                <td class="footer">
+                    <div class="footer-text">İnsan Kaynakları Departmanı</div>
+                    <div class="company-info">
+                        Bu mesaj LeaveTracking sistemi tarafından otomatik olarak gönderilmiştir.<br>
+                        Lütfen bu e-postayı yanıtlamayınız.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

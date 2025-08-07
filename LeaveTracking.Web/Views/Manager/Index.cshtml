@@ -1,0 +1,189 @@
+﻿@model LeaveTracking.Application.DTOs.WebDTOs.ManagerDash
+@{
+    ViewBag.Title = "Yönetici Paneli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Yönetici Paneli</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">İzinleri Getir</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Çalışanların izin taleplerini görüntüleyin, onaylayın veya reddedin.
+                </p>
+                <a href="/manager/leaverequest" class="btn btn-primary">İzinleri Görüntüle</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">Takvim Kontrol</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Tüm çalışanların izin takvimini görüntüleyin ve planlama yapın.
+                </p>
+                <a href="/manager/CalendarLeaveRequest" class="btn btn-success">Takvimi Aç</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h5 class="card-title mb-0">Kullanıcı Kontrol</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Çalışan ekle ve listele.
+                </p>
+                <a href="/manager/register" class="btn btn-warning">Kullanıcıları Gör</a>
+            </div>
+        </div>
+    </div>
+   
+</div>
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">Yeni İzin Talebi</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Yeni bir izin talebi oluşturun ve onaya gönderin.
+                </p>
+                <a href="/employee/createleave" class="btn btn-info">İzin Talebi Oluştur</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="card-title mb-0">İzinlerim</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    İzin taleplerinizi görüntüleyin.
+                </p>
+
+                <a href="/employee/leaverequest" class="btn btn-secondary">İzinlerim</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title mb-0">Kota Uyarısı</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Çalışanlarınızın 5 günden az kaldıysa uyarı maili gönderin.
+                </p>
+                <form id="mailannualform">
+                    @Html.AntiForgeryToken()
+                    <button id="sendSummaryBtn" class="btn btn-danger">
+                        Gönder
+                    </button>
+                </form>
+
+                
+                <div id="resultMessage" style="margin-top: 10px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h4>Hızlı İstatistikler</h4>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-primary">@Model.PendingRequest</h3>
+                <p class="card-text">Bekleyen İzinler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-success">@Model.ApproveRequest</h3>
+                <p class="card-text">Onaylanan İzinler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-warning">@Model.MounthRequest</h3>
+                <p class="card-text">Bu Ayki İzinler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-secaondary">@Model.RejectRequest</h3>
+                <p class="card-text">Rededilen İzinler</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    document.getElementById("sendSummaryBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (!confirm('Kullanıcılara mail göndermeyi onaylıyor musunuz.')) {
+            return;
+        }
+       const btn = document.getElementById("sendSummaryBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Gönderiliyor...';
+
+        fetch('@Url.Action("SendAnnualSummary", "Manager")', {
+            method: 'POST',
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const messageDiv = document.getElementById("resultMessage");
+            if (data.success) {
+                messageDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+            } else {
+                messageDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+            }
+        })
+        .catch(error => {
+            document.getElementById("resultMessage").innerHTML =
+                `<div class="alert alert-danger">Sunucu hatası: ${error}</div>`;
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = 'Gönder';
+        });
+    });
+</script>

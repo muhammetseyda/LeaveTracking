@@ -1,0 +1,87 @@
+﻿@using LeaveTracking.Application.DTOs.WebDTOs
+@model EmployeeDash
+@{
+    ViewBag.Title = "Çalışan Paneli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Çalışan Paneli</h2>
+        <p class="text-muted">Hoşgeldiniz, @ViewBag.Name</p>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">Yeni İzin Talebi</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Yeni bir izin talebi oluşturun ve onaya gönderin.
+                </p>
+                <a href="/employee/createleave" class="btn btn-success">İzin Talebi Oluştur</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">İzinlerim</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    İzin taleplerinizi görüntüleyin.
+                </p>
+                
+                <a href="/employee/leaverequest" class="btn btn-primary">İzinlerim</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h4>İzin Özetim</h4>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-success">@Model.RemainingLeave</h3>
+                <p class="card-text">Kalan Yıllık İzin</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-warning">@Model.PendingLeave</h3>
+                <p class="card-text">Bekleyen Talep</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-primary">@Model.MounthLeave</h3>
+                <p class="card-text">Bu Ay Kullanılan</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-info">@Model.TotalLeave</h3>
+                <p class="card-text">Toplam İzin Hakkı</p>
+            </div>
+        </div>
+    </div>
+</div>

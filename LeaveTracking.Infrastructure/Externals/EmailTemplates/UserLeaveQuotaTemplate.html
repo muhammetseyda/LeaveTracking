@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İzin Kotası Uyarısı</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style type="text/css">
+        /* Reset styles for email clients */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* Client-specific styles */
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span,
+            .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        /* Main styles */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            min-width: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #ffa726;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: inline-block;
+            line-height: 60px;
+            font-size: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Content styles */
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #4a5568;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .warning-badge {
+            background-color: #ffa726;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        /* Quota overview */
+        .quota-overview {
+            background-color: #fff3e0;
+            border: 2px solid #ffa726;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .quota-title {
+            color: #e65100;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quota-stats {
+            margin: 20px 0;
+        }
+
+        .stat-row {
+            display: block;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 6px;
+        }
+
+        .stat-label {
+            color: #f57c00;
+            font-size: 14px;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e65100;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            background-color: #fff;
+            border-radius: 10px;
+            height: 25px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background-color: #ffa726;
+            height: 100%;
+            width: 75%; /* Bu değer {UsagePercentage} ile değiştirilecek */
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -30px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #e65100;
+        }
+
+        /* Breakdown section */
+        .breakdown-section {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .breakdown-title {
+            color: #2d3748;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .breakdown-table td {
+                padding: 12px 0;
+                border-bottom: 1px solid #e2e8f0;
+                vertical-align: top;
+            }
+
+            .breakdown-table tr:last-child td {
+                border-bottom: none;
+            }
+
+        .breakdown-label {
+            color: #4a5568;
+            font-weight: 500;
+            width: 60%;
+        }
+
+        .breakdown-value {
+            color: #2d3748;
+            font-weight: bold;
+            width: 40%;
+            text-align: right;
+        }
+
+        /* Recommendation section */
+        .recommendation-section {
+            background-color: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .recommendation-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .recommendation-text {
+            color: #388e3c;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+            .recommendation-text ul {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+
+            .recommendation-text li {
+                margin-bottom: 8px;
+            }
+
+        /* CTA section */
+        .cta-section {
+            background-color: #f7fafc;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .cta-text {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+            .cta-button:hover {
+                background-color: #3182ce;
+            }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-text {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .company-info {
+            color: #a0aec0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* Mobile responsive */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+
+            .header, .content, .footer {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+
+                .header h1 {
+                    font-size: 24px !important;
+                }
+
+            .breakdown-table td {
+                padding: 8px 0 !important;
+            }
+
+            .breakdown-label,
+            .breakdown-value {
+                display: block !important;
+                width: 100% !important;
+                text-align: left !important;
+            }
+
+            .breakdown-value {
+                padding-top: 5px !important;
+                font-weight: bold !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: #f4f4f4; padding: 20px 0;">
+        <table class="email-container" cellpadding="0" cellspacing="0" border="0">
+            <!-- Header -->
+            <tr>
+                <td class="header">
+                    <div class="header-icon">⚠️</div>
+                    <h1>İzin Kotası Uyarısı</h1>
+                </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+                <td class="content">
+                    <div class="greeting">
+                        Merhaba <strong>{FullName}</strong>,
+                    </div>
+
+                    <div class="message">
+                        Yıllık izin kotanızın önemli bir kısmını kullandığınızı bildirmek isteriz.
+                        Kalan izin günlerinizi planlı şekilde kullanmanız önerilmektedir.
+                    </div>
+
+                    <div class="warning-badge">
+                        ⚠️ Kota Uyarısı
+                    </div>
+
+                    <!-- Quota Overview -->
+                    <div class="quota-overview">
+                        <div class="quota-title">📊 İzin Durumunuz</div>
+
+                        <div class="quota-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Toplam Hak</span>
+                                <span class="stat-value">{TotalQuota} gün</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Kullanılan</span>
+                                <span class="stat-value">{UsedDays} gün</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Kalan</span>
+                                <span class="stat-value">{RemainingDays} gün</span>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                            <div class="progress-text">%{UsagePercentage} Kullanıldı</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakdown Section -->
+                    <div class="breakdown-section">
+                        <div class="breakdown-title">📈 İzin Kullanım Detayları</div>
+
+                        <table class="breakdown-table" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td class="breakdown-label">🏖️ Yıllık İzin:</td>
+                                <td class="breakdown-value">{AnnualLeaveUsed} / {AnnualLeaveTotal} gün</td>
+                            </tr>
+                            <tr>
+                                <td class="breakdown-label">🏥 Sağlık İzni:</td>
+                                <td class="breakdown-value">{SickLeaveUsed} gün</td>
+                            </tr>
+                            <tr>
+                                <td class="breakdown-label">🎯 Diğer İzinler:</td>
+                                <td class="breakdown-value">{OtherLeaveUsed} gün</td>
+                            </tr>
+                            <tr>
+                                <td class="breakdown-label">📅 Son İzin Tarihi:</td>
+                                <td class="breakdown-value">{LastLeaveDate}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Recommendation Section -->
+                    <div class="recommendation-section">
+                        <div class="recommendation-title">💡 Öneriler</div>
+                        <div class="recommendation-text">
+                            <ul>
+                                <li>Kalan {RemainingDays} günlük izninizi yıl sonuna kadar planlayın</li>
+                                <li>Uzun süreli izinlerinizi önceden planlayarak ekip koordinasyonunu sağlayın</li>
+                                <li>Acil durumlar için en az 3-5 günlük bir rezerv ayırmanız önerilir</li>
+                                <li>Yıl sonu yaklaşırken kullanılmayan izinler iptal olabilir</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="cta-section">
+                        <div class="cta-text">
+                            Kalan izin günlerinizi planlamak için sisteme giriş yapabilirsiniz.
+                        </div>
+                        <a href="{PlanLeaveUrl}" class="cta-button">İzin Planla</a>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+                <td class="footer">
+                    <div class="footer-text">İnsan Kaynakları Departmanı</div>
+                    <div class="company-info">
+                        Bu mesaj LeaveTracking sistemi tarafından otomatik olarak gönderilmiştir.<br>
+                        Lütfen bu e-postayı yanıtlamayınız.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
