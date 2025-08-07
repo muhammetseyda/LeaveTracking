@@ -14,7 +14,7 @@
 - ✅ AutoMapper
 - ✅ Fluent Validation
 - ✅ JWT Authentication
-- ✅ Swagger UI
+- ✅ Scalar UI
 - ✅ SMTP (Gmail) ile Mail Gönderimi
 
 ---
