@@ -73,11 +73,12 @@ Aşağıdaki kullanıcılar sistemde hazır olarak gelir:
 
 2. **ConnectionString ayarları:**
    - `appsettings.json` ve `Infrastructure` altındaki ilgili dosyada **SQL Server bağlantısı** güncellenmeli.
-   - LeaveTracking.MinimalAPI\appsettings.json
-   - LeaveTracking.Infrastructure\Persistence\Context\AppDbContextFactory.cs
+   - **LeaveTracking.MinimalAPI\appsettings.json**
+   - **LeaveTracking.Infrastructure\Persistence\Context\AppDbContextFactory.cs**
 
 3. **SMTP ayarı:**
    - Mail göndermek için EmailServices.cs içinde kendi **Gmail adresinizi ve Uygulama Şifrenizi** girin.
+   - **LeaveTracking.Infrastructure\Services\EmailService.cs**
 
 4. **Migration ve Seed işlemleri:**
    - Migration ve seed işlemleri otomatik olarak yapılır:
