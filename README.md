@@ -1,3 +1,15 @@
+<!-- PROJECT BADGES -->
+![.NET Core](https://img.shields.io/badge/.NET%20Core-9.0-blueviolet)
+![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-9.0-green)
+![License](https://img.shields.io/github/license/muhammetseyda/LeaveTracking)
+![Repo Size](https://img.shields.io/github/repo-size/muhammetseyda/LeaveTracking)
+![Last Commit](https://img.shields.io/github/last-commit/muhammetseyda/LeaveTracking)
+![Issues](https://img.shields.io/github/issues/muhammetseyda/LeaveTracking)
+![Stars](https://img.shields.io/github/stars/muhammetseyda/LeaveTracking?style=social)
+![Forks](https://img.shields.io/github/forks/muhammetseyda/LeaveTracking?style=social)
+![Watchers](https://img.shields.io/github/watchers/muhammetseyda/LeaveTracking?style=social)
+![Pull Requests](https://img.shields.io/github/issues-pr/muhammetseyda/LeaveTracking)
+
 # 🗂️ Leave Tracking System
 
 **Leave Tracking**, çalışanların izin taleplerini kolayca oluşturabildiği, yöneticilerin bu talepleri onaylayabildiği ve tüm sürecin takibini sağlayan bir izin yönetim sistemidir. Sistem; kullanıcı rolleri, JWT korumalı API, mail bildirimleri ve modern Clean Architecture yaklaşımıyla geliştirilmiştir. MVC projesi API projesini tüketmektedir.
