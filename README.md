@@ -20,7 +20,7 @@
 - ✅ SQL Server (SSMS)
 - ✅ Clean Architecture
 - ✅ Minimal API + MVC (Hybrid yapı)
-- ✅ AutoMapper
+- ✅ Mapster
 - ✅ Fluent Validation
 - ✅ JWT Authentication
 - ✅ Scalar UI
@@ -124,7 +124,7 @@ gibi durumlarda sistem otomatik olarak e-posta gönderir.
 
 ## 📦 Kullanılan Başlıca NuGet Paketleri
 
-- AutoMapper
+- Mapster
 - FluentValidation
 - Microsoft.EntityFrameworkCore
 - Microsoft.AspNetCore.Authentication.JwtBearer
